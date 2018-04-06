@@ -21,12 +21,97 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>3.11.0</version>
 		</dependency>
-
 	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>properties</directory>
+				<filtering>true</filtering>
+				<targetPath>../../</targetPath>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>test-reports</id>
+						<phase>test</phase>
+						<configuration>
+							<tasks>
+								<mkdir dir="target/surefire-reports" />
+								<mkdir dir="screenRecords" />
+								<junitreport todir="target/surefire-reports">
+									<fileset dir="target/surefire-reports">
+										<include name="**/*.xml" />
+									</fileset>
+									<report format="frames" todir="target/surefire-reports"
+										styledir="reports/junitreport" />
+								</junitreport>
+								<move todir="target/surefire-reports">
+									<fileset dir="screenshot" includes="**/*.PNG" />
+									<fileset dir="screenRecords" includes="**/*.avi" />
+								</move>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>ant</groupId>
+						<artifactId>ant-junit</artifactId>
+						<version>1.6.2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19</version>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+					<encoding>UTF-8</encoding>
+					<dependenciesToScan>
+						<dependency>com.netent.qa.automation:${testsuite.name}</dependency>
+					</dependenciesToScan>
+					<excludes>
+						<exclude>${exclude.tests}</exclude>
+					</excludes>
+					<includes>
+						<include>${include.tests}</include>
+					</includes>
+					<groups>${testcase.groups}</groups>
+					<configuration>
+						<forkMode>never</forkMode>
+						<runOrder>filesystem</runOrder>
+					</configuration>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.19</version>
+				<configuration>
+					<showSuccess>false</showSuccess>
+					<alwaysGenerateSurefireReport>true</alwaysGenerateSurefireReport>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
 </project>

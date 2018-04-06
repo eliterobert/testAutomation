@@ -2,20 +2,22 @@ package TestingAutomation.com.test.automation;
 
 import static org.junit.Assert.assertTrue;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest2 
-{
+public class Test2 {
+
 	private WebDriver driver;
 	private WebDriverWait wait;
     /**
@@ -27,9 +29,13 @@ public class AppTest2
 	
 	@Before
 	public void before() {
-	
-		System.setProperty("webdriver.chrome.driver", "src/test/java/chromedriver.exe");
-		driver = new ChromeDriver();
+		DesiredCapabilities dc = DesiredCapabilities.firefox(); 
+		try {
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		wait = new WebDriverWait(driver, 5);
 	}
 	
@@ -45,4 +51,5 @@ public class AppTest2
 	public void after() {
 		driver.quit();
 	}
+	
 }
