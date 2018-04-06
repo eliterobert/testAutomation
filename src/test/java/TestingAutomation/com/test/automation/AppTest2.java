@@ -34,7 +34,7 @@ public class AppTest2
 	}
 	
 	@Test
-    public void appTest() throws InterruptedException
+    public void appTest2() throws InterruptedException
     {
     	driver.get(pathToAvanza);
     	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main\"]/div/div/div[2]/div/div/a[2]"))).click();
