@@ -1,5 +1,7 @@
 package TestingAutomation.com.test.automation;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +38,7 @@ public class AppTest
     {
     	driver.get(pathToGoogle);
     	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"tsf\"]/div[2]/div[3]/center/input[2]"))).click();
-    	Thread.sleep(1500);
+    	assertTrue("Logo not visible", wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"logo\"]"))).isDisplayed());
     }
 	
 	@After
