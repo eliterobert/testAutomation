@@ -6,7 +6,7 @@ node('master') {
     }
     stage('Run tests') {
       maven: 'maven' {
-          dir('com.test.automation') {
+          dir('TestingAutomation') {
             sh 'mvn clean install test'
           }
       }
