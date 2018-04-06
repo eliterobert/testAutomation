@@ -5,7 +5,7 @@ node('master') {
         checkout scm
     }
     stage('Run tests') {
-      steps {
+      maven: 'Maven' {
                 build('AppTest')
                 build('AppTest2')
             }
