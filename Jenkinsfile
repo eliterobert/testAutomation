@@ -7,7 +7,7 @@ node('master') {
     
     stage('Run tests') {
       maven: 'maven' {
-            sh 'mvn clean install '-Dtest=automation'
+            sh 'mvn clean install -Dtest=automation
       }
     }
 }
