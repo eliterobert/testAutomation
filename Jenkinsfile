@@ -7,7 +7,7 @@ node('master') {
     stage('Run tests') {
       maven: 'maven' {
           dir('com.test.automation') {
-            sh 'mvn clean test -Dwebdriver.type=chrome -Dwebdriver.chrome.driver=E:/Workspace/chromedriver.exe'
+            sh 'mvn clean install test'
           }
       }
     }
