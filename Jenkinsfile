@@ -6,9 +6,9 @@ node('master') {
     }
     
     stage('Run tests') {
-      withMaven(maven: 'Maven 3') {
-          dir('bobcat') {
-            sh 'mvn clean test -Dwebdriver.type=chrome -Dwebdriver.chrome.driver=E:/Workspace/chromedriver.exe'
+      maven: 'Maven 3' {
+          dir('Test') {
+            sh 'mvn clean install test -Dwebdriver.type=chrome -Dwebdriver.chrome.driver=E:/Workspace/chromedriver.exe'
           }
       }
     }
