@@ -41,7 +41,7 @@ public class Test3 {
 	}
 
 	@Test
-    public void testGoogleLoad() throws InterruptedException
+    public void testNetEntLoad() throws InterruptedException
     {
     	driver.get(pathToNetEnt);
     	driver.manage().window().maximize();
