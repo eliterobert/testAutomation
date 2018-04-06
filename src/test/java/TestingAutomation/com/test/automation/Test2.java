@@ -7,6 +7,7 @@ import java.net.URL;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,15 +37,16 @@ public class Test2 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		wait = new WebDriverWait(driver, 5);
+		wait = new WebDriverWait(driver, 10);
 	}
-	
+
 	@Test
-    public void appTest2() throws InterruptedException
+    public void testGoogleLoad() throws InterruptedException
     {
     	driver.get(pathToAvanza);
     	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main\"]/div/div/div[2]/div/div/a[2]"))).click();
     	assertTrue("Logo not visible", wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"mainNav\"]/div/div/a/img"))).isDisplayed());
+     	System.out.println("BOOM, Google works!");
     }
 	
 	@After
