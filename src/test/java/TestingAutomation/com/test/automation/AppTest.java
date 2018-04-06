@@ -26,7 +26,7 @@ public class AppTest
 	@Before
 	public void before() {
 	
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\rober\\BorkSpace\\com.test.automation\\resources\\chromedriver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/test/java/chromedriver.exe");
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 5);
 	}
