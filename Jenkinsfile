@@ -5,10 +5,10 @@ node('master') {
         checkout scm
     }
     stage('Run tests') {
-      maven: 'maven' {
-          dir('/src/test/java') {
-            sh 'mvn clean install test'
-          }
+      steps {
+                build('AppTest')
+                build('AppTest2')
+            }
       }
     }
 }
